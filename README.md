@@ -5,9 +5,7 @@ Nano Markup is a minimalistic markup language crafted for simplicity and efficie
 ## Language overview
 
 ### Key/Value Pair
-The Key/Value Pair feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
-
-The value can be empty to provide flexibility in data representation. Additionally, to maintain proper formatting and prevent ambiguity in key identification, the key itself cannot end with a dot, as the dot serves as a separator token for referenced data. This ensures consistent and reliable usage of the key/value pair structure while respecting the role of the dot as a separator.
+The Key/Value Pair feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. The value can be empty to provide flexibility in data representation. This structure ensures clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
 ```
 name Ariana
 age 12
@@ -23,10 +21,27 @@ goods [
   milk
 ]
 ```
-In this example, the key is "goods," and the associated array includes values like "bread," "salt," and "milk." The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
+In this example, the key is "goods" and the associated array includes values like "bread", "salt" and "milk" The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
 
-### Inline Array
-The Inline Array declaration mirrors that of a standard array. To extend an existing array, use its name followed by square braces. Alternatively, reference another inline array using a dot as a separator for names. The new array inherits data from the existing one, with appended values. 
+**Inline Array**
+
+The Inline Array declaration is the same as the array. 
+```
+goods [
+  bread
+  salt
+  milk
+  vegetables [
+    potato
+    cucumber
+  ]
+]
+```
+In this example, the inline array is "vegetables" which includes values like "potato" and "cucumber".
+
+**Extended Array**
+
+The Extended Array allows you to extend the existing array effortlessly. To extend an existing array, simply use its name followed by square braces. Alternatively, reference another inline array using a dot as a separator for names. The new array inherits data from the existing one, with appended values.
 ```
 goods [
   bread
@@ -39,13 +54,19 @@ buy [
     water
   ]
 ]
+
+tomorrow [
+  buy buy.goods [
+    butter
+  ]
+]
 ```
-In this example, the "buy" array extends the "goods" array by appending the item "water".
+In this example, the "buy" array extends the "goods" array by adding the item "water" and the "tomorrow.buy" array extends the "buy.goods" array by adding the item "butter". Extended array simplifies array extension for seamless data manipulation.
 
 ### Entity
 The "Entity" feature represents a structured collection of key/value pairs. The entity name is a single word without spaces, and the entity is denoted by a trailing colon ":". Each key/value pair within the entity is indented for clarity. This design ensures a well-defined and organized representation of related data within a distinct entity.
 
-The name of the entity cannot be ended by a dot, as the dot serves as a separator token for referenced data. This rule ensures proper formatting and prevents ambiguity in distinguishing entity names from other elements in the language, maintaining a clear and organized structure.
+The name of the entity cannot be ended by a dot, as the dot serves as a separator in the entity path. This rule ensures proper formatting and prevents ambiguity in distinguishing entity names, maintaining a clear and organized structure.
 ```
 student:
   name John
@@ -53,10 +74,9 @@ student:
 ```
 In this example, "student" is the entity name, and it encapsulates key/value pairs like "name" with the value "John" and "age" with the value "20". The use of indentation and the ":" symbol provides a clear and structured way to represent entities in the language.
 
-### Inline Entity
-The "Inline Entity" feature serves as a value for a key, providing a compact and expressive way to represent structured data. It is declared using curly braces "{}" and includes key/value pairs as well as entities. This allows for the nesting of information within a single key, enhancing readability and organization.
+**Inline Entity**
 
-You can overload an existing entity by using its name before curly braces or provide a full path to the inline entity using a dot as a separator. The overloaded entity must exist. In the case of an overload, all data is inherited, and the same key will be overridden by a new value provided in curly braces. This mechanism ensures flexibility and efficient organization of data within the language structure.
+The "Inline Entity" feature serves as a value for a key, providing a compact and expressive way to represent structured data. It is declared using curly braces "{}" and includes key/value pairs as well as entities. It enhances readability and data organization.
 ```
 buy:
   mercedes {
@@ -64,10 +84,27 @@ buy:
     color black
   }
 ```
-In this example, the "mercedes" key is assigned the value of an inline entity, which contains key/value pairs like "year" with the value "2023" and "color" with the value "black." The use of curly braces "{}" signifies the inline entity, creating a concise and visually clear representation of nested data.
+In this example, "mercedes" is the inlined entity. The use of curly braces "{}" signifies the inline entity, creating a concise and visually clear representation of nested data.
+
+**Extended Entity**
+
+The Extended Entity allows you to overload an existing entity by using its name before curly braces or provide a full path to the inline entity using a dot as a separator. All data is inherited and the same key will be overridden by a new value provided in curly braces. This mechanism ensures flexibility and efficient organization of data.
+```
+buy:
+  mercedes {
+    year 2023
+    color black
+  }
+
+tomorrow:
+  buy buy.mercedes {
+    color red
+  }
+```
+In this example, the "tomorrow.buy" key is assigned the value of the extended entity, which contains key/value pairs like "color" with the value "red". The "color" key is replaced by a new value "red".
 
 ### Comment 
-The "Comment" feature allows for annotating code with additional information. Single-line comments start with "//" and are placed on a new line. Multi-line comments begin with "/*" and end with "*/". This feature enhances code readability and documentation.
+The "Comment" feature allows for annotating data with additional information. Single-line comments start with "//" and are placed on a new line. Multi-line comments begin with "/*" and end with "*/". This feature enhances data readability and documentation.
 ```
 // This is a single-line comment. It should start from a new line.
 
