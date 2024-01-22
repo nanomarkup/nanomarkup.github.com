@@ -14,51 +14,17 @@ A key in Nano Markup can take various forms, such as an entity, an array, a sing
 
 The "Entity" in Nano Markup signifies a structured collection of key/value pairs. Each key/value pair within the entity starts from a new line for clarity, enhancing readability and organization. The use of curly braces "{}" encapsulates the entity, offering a clear visual delineation and reinforcing the hierarchical structure of the data. This deliberate design ensures a well-defined and organized representation of related data within a distinct entity, promoting clarity and ease of interpretation.
 ```
-harvard {
-    name Harvard University
-    country USA
-}
-```
-In this example, "harvard" is the entity, and it encapsulates key/value pairs like "name" with the value "Harvard University" and "country" with the value "USA". The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
-
-**Inline Entity**
-
-The Inline Entity declaration mirrors the structure of a regular entity.  
-```
-James {
+james {
+    name James
     age 20
+    // the inlined contacts entity
     contacts {
         email james@gmail.com
         mobile 123456789
     }
 }
 ```
-In this example, "contacts" is the inlined entity. 
-
-**Extended Entity**
-
-The Extended Entity introduces the ability to overload an existing entity by providing a full name to the inline entity before curly braces using a dot as a separator. This innovative feature allows for seamless data inheritance, where all data from the original entity is retained, and any overlapping keys are overridden by the new values. This mechanism ensures a high degree of flexibility and efficient organization of data, providing users with powerful tools for managing and extending entity structures within the markup language.
-```
-James {
-    age 20
-    contacts {
-        email james@gmail.com
-        mobile 123456789
-    }
-}
-
-universities [
-    oxford {
-        students [
-            James James {
-                age 21
-                active
-            }	
-        ]
-    }
-]
-```
-In this example, the "students[James]" entity is assigned the value of the extended entity, which contains key/value pairs like "age" with the value "20". This key is replaced by a new value "21" for the "students[James]" entity only.
+In this example, "james" is the entity, and it encapsulates key/value pairs like "name" with the value "James" and "age" with the value "20". "contacts" is the inlined entity. The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
 
 ### Array
 
@@ -67,50 +33,20 @@ The Array feature facilitates the assignment of a list of values to a key. Each 
 goods [
   bread
   salt
-  milk
-]
-```
-In this example, the key is "goods" and the associated array includes values like "bread", "salt" and "milk" The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
-
-**Inline Array**
-
-The Inline Array declaration mirrors the structure of a regular array. 
-```
-goods [
-  bread
-  salt
-  milk
-  vegetables [
+  // the inline array of vegetables
+  [
     potato
     cucumber
   ]
+  // the inline car entity
+  {
+    name car
+    year 2023
+    color black
+  }
 ]
 ```
-In this example, the inline array is "vegetables" which includes values like "potato" and "cucumber".
-
-**Extended Array**
-
-The Extended Array feature facilitates the effortless extension of an existing array. To achieve this, simply use the full name of the existing array followed by square brackets. Alternatively, reference another inline array by using a dot as a separator for names. In this process, the new array inherits data from the existing one, with appended values. This mechanism ensures a straightforward means of expanding arrays while maintaining the integrity of existing data structures, providing users with a powerful tool for managing and extending array content within the markup language.
-```
-goods [
-  bread
-  salt
-  milk
-]
-
-buy [
-  items goods [
-    water
-  ]
-]
-
-tomorrow [
-  buy buy.goods [
-    butter
-  ]
-]
-```
-In this example, the "buy" array extends the "goods" array by adding the item "water" and the "tomorrow.buy" array extends the "buy.goods" array by adding the item "butter". Extended array simplifies array extension for seamless data manipulation.
+In this example, the associated array includes values like "bread", "salt", the inlined array and the inlined entity. The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
 
 ## Value
 
@@ -126,6 +62,37 @@ You can more than one line for data representation.
 '''
 ```
 In this example, "name" and "age" are the keys, and "Ariana" and "12" are their corresponding single-line values. The "description" key represents multi-line value. The simplicity of this structure allows for straightforward representation of various data points in a concise manner.
+
+## Reference
+
+The language allows referencing keys using the "@" symbol followed by the identifier/key you want to reference. You should use the dot separator for an inline key.
+
+```
+john {
+    name John
+    age 21
+    contacts {
+        email john@gmail.com
+        mobile 345678912
+    }
+}
+james {
+    name James
+    age 20
+    contacts {
+        email james@gmail.com
+        mobile 123456789
+    }
+}
+students [
+    @james
+    @john
+]
+
+john_contacts @john.contacts
+```
+
+These references establish connections between different parts of your data, allowing you to link and reuse information across entities and arrays. This promotes a modular and organized structure in representing data relationships.
 
 ## Comment 
 
@@ -152,13 +119,8 @@ Single-line comments provide brief annotations on a new line, while multi-line c
 ## Example
 
 ```
-/* Where,
-{ } is an entity
-[ ] is an array
-''' ''' is a multi-line value
-*/
-
-James {
+james {
+    name James
     age 20
     contacts {
         email james@gmail.com
@@ -166,7 +128,8 @@ James {
     }
 }
 
-John {
+john {
+    name John
     age 21
     contacts {
         email john@gmail.com
@@ -175,7 +138,8 @@ John {
 }
 
 harvard_students [
-    Mary {
+    {
+        name Mary
         age 20
         contacts {
             email mary@gmail.com
@@ -185,18 +149,18 @@ harvard_students [
 ]
 
 universities [
-    harvard {
+    {
         name Harvard University
         country USA
         address '''
 Massachusetts Hall
 Cambridge, MA 02138
 '''
-        students harvard_students [         
-            // add new students to harvard
-            Mark {
+        students [
+            @harvard_students
+            {
+                name Mark
                 age 20
-                active
                 contacts {
                     email mark@gmail.com
                     mobile 123456789
@@ -204,7 +168,7 @@ Cambridge, MA 02138
             }
         ]
     }
-    oxford {
+    {
         name University Of Oxford
         country United Kingdom
         address '''
@@ -214,13 +178,8 @@ OX1 2JD
 United Kingdom
 '''
         students [
-            /* add new students to oxford */
-            John John {
-                inactive
-            }
-            James James {
-                active
-            }           
+            @john
+            @james      
         ]
     }
 ]
