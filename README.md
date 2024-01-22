@@ -11,48 +11,57 @@ A new key always starts on a new line. Keys, essential for identifying attribute
 A key in Nano Markup can take various forms, such as an entity, an array, a single-line value, or a multi-line value. This versatility allows for expressing diverse types of information within the markup language. Additionally, a key can be left empty, providing flexibility in data representation to accommodate various scenarios and enhance the language's adaptability.
 
 ### Entity
+
 The "Entity" in Nano Markup signifies a structured collection of key/value pairs. Each key/value pair within the entity starts from a new line for clarity, enhancing readability and organization. The use of curly braces "{}" encapsulates the entity, offering a clear visual delineation and reinforcing the hierarchical structure of the data. This deliberate design ensures a well-defined and organized representation of related data within a distinct entity, promoting clarity and ease of interpretation.
 ```
-student {
-  name John
-  age 20
+harvard {
+    name Harvard University
+    country USA
 }
 ```
-In this example, "student" is the entity, and it encapsulates key/value pairs like "name" with the value "John" and "age" with the value "20". The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
+In this example, "harvard" is the entity, and it encapsulates key/value pairs like "name" with the value "Harvard University" and "country" with the value "USA". The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
 
 **Inline Entity**
 
 The Inline Entity declaration mirrors the structure of a regular entity.  
 ```
-buy {
-  car {
-    year 2023
-    color black
-  }
+James {
+    age 20
+    contacts {
+        email james@gmail.com
+        mobile 123456789
+    }
 }
 ```
-In this example, "car" is the inlined entity. 
+In this example, "contacts" is the inlined entity. 
 
 **Extended Entity**
 
 The Extended Entity introduces the ability to overload an existing entity by providing a full name to the inline entity before curly braces using a dot as a separator. This innovative feature allows for seamless data inheritance, where all data from the original entity is retained, and any overlapping keys are overridden by the new values. This mechanism ensures a high degree of flexibility and efficient organization of data, providing users with powerful tools for managing and extending entity structures within the markup language.
 ```
-buy {
-  car {
-    year 2023
-    color black
-  }
+James {
+    age 20
+    contacts {
+        email james@gmail.com
+        mobile 123456789
+    }
 }
 
-tomorrow {
-  buy buy.car {
-    color red
-  }
-}
+universities [
+    oxford {
+        students [
+            James James {
+                age 21
+                active
+            }	
+        ]
+    }
+]
 ```
-In this example, the "tomorrow.buy" entity is assigned the value of the extended entity, which contains key/value pairs like "color" with the value "red". The "color" key is replaced by a new value "red" for the "tomorrow.buy" entity only.
+In this example, the "students[James]" entity is assigned the value of the extended entity, which contains key/value pairs like "age" with the value "20". This key is replaced by a new value "21" for the "students[James]" entity only.
 
 ### Array
+
 The Array feature facilitates the assignment of a list of values to a key. Each value is presented on a new line, contributing to the overall clarity of the structure. Furthermore, the array can include inline arrays or inline entities, adding an extra layer of flexibility to accommodate various data structures. The use of square brackets "[]" encapsulates the array, offering a distinct visual representation. This intentional design ensures a clean and organized portrayal of ordered data associated with a specific key, promoting clarity and facilitating the effective representation of structured information.
 ```
 goods [
@@ -107,14 +116,14 @@ In this example, the "buy" array extends the "goods" array by adding the item "w
 
 A **single-line value** is a data representation placed within the current line. It provides a streamlined way to express information without the need for additional formatting.
 
-A **multi-line value** offers the flexibility to capture more extensive information by spanning across multiple lines. It is denoted by enclosing the content within triple quotes at both the beginning and the end. This feature allows for the expression of detailed and multiline data, facilitating a more comprehensive representation within the markup language.
+A **multi-line value** offers the flexibility to capture more extensive information by spanning across multiple lines. It is denoted by enclosing the content within triple single quotes at both the beginning and the end. This feature allows for the expression of detailed and multiline data, facilitating a more comprehensive representation within the markup language.
 ```
 name Ariana
 age 12
-description """
+description '''
 This is a multi-line value.
 You can more than one line for data representation.
-"""
+'''
 ```
 In this example, "name" and "age" are the keys, and "Ariana" and "12" are their corresponding single-line values. The "description" key represents multi-line value. The simplicity of this structure allows for straightforward representation of various data points in a concise manner.
 
@@ -131,3 +140,88 @@ The "Comment" feature allows for annotating data with additional information. Si
 */
 ```
 Single-line comments provide brief annotations on a new line, while multi-line comments allow for more extensive descriptions spanning multiple lines.
+
+## Use Cases
+
+- Configuration Files: Ideal for configuration files in applications, Nano Markup simplifies the setup process with its intuitive structure.
+- Data Exchange: Facilitate smooth data exchange between systems and applications with Nano Markup's straightforward syntax.
+- RESTful APIs: Nano Markup can be used as a lightweight alternative to JSON for defining data payloads in RESTful API communication.
+- IoT Device Communication: Simplify communication between Internet of Things (IoT) devices with Nano Markup, ensuring efficient and standardized data exchange in connected ecosystems.
+- Configuration Management: Enhance configuration management systems with the simplicity and flexibility of Nano Markup, providing a standardized format for defining and managing settings across applications and environments.
+
+## Example
+
+```
+/* Where,
+{ } is an entity
+[ ] is an array
+''' ''' is a multi-line value
+*/
+
+James {
+    age 20
+    contacts {
+        email james@gmail.com
+        mobile 123456789
+    }
+}
+
+John {
+    age 21
+    contacts {
+        email john@gmail.com
+        mobile 345678912
+    }
+}
+
+harvard_students [
+    Mary {
+        age 20
+        contacts {
+            email mary@gmail.com
+            mobile 678912345
+        }
+    }
+]
+
+universities [
+    harvard {
+        name Harvard University
+        country USA
+        address '''
+Massachusetts Hall
+Cambridge, MA 02138
+'''
+        students harvard_students [         
+            // add new students to harvard
+            Mark {
+                age 20
+                active
+                contacts {
+                    email mark@gmail.com
+                    mobile 123456789
+                }
+            }
+        ]
+    }
+    oxford {
+        name University Of Oxford
+        country United Kingdom
+        address '''
+Wellington Square
+Oxford
+OX1 2JD
+United Kingdom
+'''
+        students [
+            /* add new students to oxford */
+            John John {
+                inactive
+            }
+            James James {
+                active
+            }           
+        ]
+    }
+]
+```
