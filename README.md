@@ -2,9 +2,11 @@
 
 Nano Markup is a minimalistic markup language meticulously designed for simplicity and efficiency in document creation. With a focus on fundamental elements, it strives to provide a high-quality and efficient means of expressing information. NanoMarkup is tailored for scenarios where a lightweight and straightforward syntax is paramount.
 
+## Language Overview
+
 **The Key/Value Pair** feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures a clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
 
-## Key
+### Key
 
 A new key always starts on a new line. Keys, essential for identifying attributes or properties, cannot include spaces or dots, ensuring a straightforward and unambiguous structure.
 
@@ -48,7 +50,7 @@ goods [
 ```
 In this example, the associated array includes values like "bread", "salt", the inlined array and the inlined entity. The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
 
-## Value
+### Value
 
 A **single-line value** is a data representation placed within the current line. It provides a streamlined way to express information without the need for additional formatting.
 
@@ -63,7 +65,7 @@ You can more than one line for data representation.
 ```
 In this example, "name" and "age" are the keys, and "Ariana" and "12" are their corresponding single-line values. The "description" key represents multi-line value. The simplicity of this structure allows for straightforward representation of various data points in a concise manner.
 
-## Reference
+### Reference
 
 The language allows referencing keys using the "@" symbol followed by the identifier/key you want to reference. You should use the dot separator for an inline key.
 
@@ -94,7 +96,7 @@ john_contacts @john.contacts
 
 These references establish connections between different parts of your data, allowing you to link and reuse information across entities and arrays. This promotes a modular and organized structure in representing data relationships.
 
-## Comment 
+### Comment 
 
 The "Comment" feature allows for annotating data with additional information. Single-line comments start with "//" and are placed on a new line. Multi-line comments begin with "/*" and end with "*/". This feature enhances data readability and documentation.
 ```
