@@ -5,18 +5,25 @@ Nano Markup is a minimalistic markup language meticulously designed for simplici
 ## Language Overview
 
 **The Key/Value Pair** feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures a clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
+The Key/Value Pair is an integral part of the entity structure.
+
+Additionally, Nano Markup supports referencing other entities or arrays, enhancing reusability and maintaining a clean structure. 
+
+The array is the **default structure** if another structure is not explicitly specified.
 
 ### Key
 
-A new key always starts on a new line. Keys, essential for identifying attributes or properties, cannot include spaces or dots, ensuring a straightforward and unambiguous structure.
+A new key always starts on a new line. Keys, essential for identifying attributes or properties, must be unique values and cannot include spaces or dots, ensuring a straightforward and unambiguous structure.
 
-A key in Nano Markup can take various forms, such as an entity, an array, a single-line value, or a multi-line value. This versatility allows for expressing diverse types of information within the markup language. Additionally, a key can be left empty, providing flexibility in data representation to accommodate various scenarios and enhance the language's adaptability.
+### Value
 
-### Entity
+A value can take various forms, such as an entity, an array, a single-line value, a multi-line value, or an empty one. This versatility allows for the expression of diverse types of information within the markup language. It provides flexibility in data representation to accommodate various scenarios and enhances the language's adaptability.
+
+## Entity
 
 The "Entity" in Nano Markup signifies a structured collection of key/value pairs. Each key/value pair within the entity starts from a new line for clarity, enhancing readability and organization. The use of curly braces "{}" encapsulates the entity, offering a clear visual delineation and reinforcing the hierarchical structure of the data. This deliberate design ensures a well-defined and organized representation of related data within a distinct entity, promoting clarity and ease of interpretation.
 ```
-james {
+{
     name James
     age 20
     // the inlined contacts entity
@@ -26,31 +33,29 @@ james {
     }
 }
 ```
-In this example, "james" is the entity, and it encapsulates key/value pairs like "name" with the value "James" and "age" with the value "20". "contacts" is the inlined entity. The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
+In this example, an anonymous entity encapsulates key/value pairs like "name" with the value "James" and "age" with the value "20". "contacts" is the inlined entity. The use of curly braces "{}" provides a clear and structured way to represent entities in the language.
 
-### Array
+## Array
 
-The Array feature facilitates the assignment of a list of values to a key. Each value is presented on a new line, contributing to the overall clarity of the structure. Furthermore, the array can include inline arrays or inline entities, adding an extra layer of flexibility to accommodate various data structures. The use of square brackets "[]" encapsulates the array, offering a distinct visual representation. This intentional design ensures a clean and organized portrayal of ordered data associated with a specific key, promoting clarity and facilitating the effective representation of structured information.
+Each value is presented on a new line, contributing to the overall clarity of the structure. Furthermore, the array can include inline arrays or inline entities, adding an extra layer of flexibility to accommodate various data structures. The use of square brackets "[]" encapsulates the array, offering a distinct visual representation. This intentional design ensures a clean and organized portrayal of ordered data associated with a specific key, promoting clarity and facilitating the effective representation of structured information.
 ```
-goods [
-  bread
-  salt
-  // the inline array of vegetables
-  [
-    potato
-    cucumber
-  ]
-  // the inline car entity
-  {
-    name car
-    year 2023
-    color black
-  }
+bread
+salt
+// the inline array of vegetables
+[
+  potato
+  cucumber
 ]
+// the inline car entity
+{
+  name car
+  year 2023
+  color black
+}
 ```
-In this example, the associated array includes values like "bread", "salt", the inlined array and the inlined entity. The syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
+In this example, the associated array includes values like 'bread' and 'salt', showcasing both inlined array and inlined entity. The root square brackets are omitted, and it is considered an array by default. This syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
 
-### Value
+## Value
 
 A **single-line value** is a data representation placed within the current line. It provides a streamlined way to express information without the need for additional formatting.
 
@@ -65,9 +70,9 @@ You can more than one line for data representation.
 ```
 In this example, "name" and "age" are the keys, and "Ariana" and "12" are their corresponding single-line values. The "description" key represents multi-line value. The simplicity of this structure allows for straightforward representation of various data points in a concise manner.
 
-### Reference
+## Reference
 
-The language allows referencing keys using the "@" symbol followed by the identifier/key you want to reference. You should use the dot separator for an inline key.
+The language allows referencing values using the "@" symbol followed by the identifier/key you want to reference. You should use the dot separator for an inline key.
 
 ```
 john {
@@ -96,7 +101,7 @@ john_contacts @john.contacts
 
 These references establish connections between different parts of your data, allowing you to link and reuse information across entities and arrays. This promotes a modular and organized structure in representing data relationships.
 
-### Comment 
+## Comment 
 
 The "Comment" feature allows for annotating data with additional information. Single-line comments start with "//" and are placed on a new line. Multi-line comments begin with "/*" and end with "*/". This feature enhances data readability and documentation.
 ```
