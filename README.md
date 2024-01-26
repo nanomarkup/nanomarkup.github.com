@@ -4,18 +4,18 @@ Nano Markup is a minimalistic markup language meticulously designed for simplici
 
 ## Language Overview
 
-**The Key/Value Pair** feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures a clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
+The Key/Value Pair feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures a clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
 The Key/Value Pair is an integral part of the entity structure.
 
 Additionally, Nano Markup supports referencing other entities or arrays, enhancing reusability and maintaining a clean structure. 
 
 The array is the **default structure** if another structure is not explicitly specified.
 
-### Key
+**Key**
 
 A new key always starts on a new line. Keys, essential for identifying attributes or properties, must be unique values and cannot include spaces or dots, ensuring a straightforward and unambiguous structure.
 
-### Value
+**Value**
 
 A value can take various forms, such as an entity, an array, a single-line value, a multi-line value, or an empty one. This versatility allows for the expression of diverse types of information within the markup language. It provides flexibility in data representation to accommodate various scenarios and enhances the language's adaptability.
 
