@@ -7,8 +7,6 @@ Nano Markup is a minimalistic markup language meticulously designed for simplici
 The Key/Value Pair feature is a fundamental aspect of the language, defining a unique identifier (key) associated with a corresponding value. Each key is followed by a space, and the data following the key is considered its value. This structure ensures a clear and unambiguous representation of information, where keys uniquely identify specific attributes or properties, and values hold the associated data.
 The Key/Value Pair is an integral part of the entity structure.
 
-Additionally, Nano Markup supports referencing other entities or arrays, enhancing reusability and maintaining a clean structure. 
-
 The array is the **default structure** if another structure is not explicitly specified.
 
 **Key**
@@ -43,14 +41,14 @@ bread
 salt
 // the inline array of vegetables
 [
-  potato
-  cucumber
+    potato
+    cucumber
 ]
 // the inline car entity
 {
-  name car
-  year 2023
-  color black
+    name car
+    year 2023
+    color black
 }
 ```
 In this example, the associated array includes values like 'bread' and 'salt', showcasing both inlined array and inlined entity. The root square brackets are omitted, and it is considered an array by default. This syntax promotes readability and organization, while the option for inline arrays or entities adds versatility to the representation of structured data.
@@ -59,47 +57,16 @@ In this example, the associated array includes values like 'bread' and 'salt', s
 
 A **single-line value** is a data representation placed within the current line. It provides a streamlined way to express information without the need for additional formatting.
 
-A **multi-line value** offers the flexibility to capture more extensive information by spanning across multiple lines. It is denoted by enclosing the content within triple single quotes at both the beginning and the end. This feature allows for the expression of detailed and multiline data, facilitating a more comprehensive representation within the markup language.
+A **multi-line value** offers the flexibility to capture more extensive information by spanning across multiple lines. It is denoted by enclosing the content within the backtick at both the beginning and the end. This feature allows for the expression of detailed and multiline data, facilitating a more comprehensive representation within the markup language.
 ```
 name Ariana
 age 12
-description '''
+description `
 This is a multi-line value.
 You can more than one line for data representation.
-'''
+`
 ```
 In this example, "name" and "age" are the keys, and "Ariana" and "12" are their corresponding single-line values. The "description" key represents multi-line value. The simplicity of this structure allows for straightforward representation of various data points in a concise manner.
-
-## Reference
-
-The language allows referencing values using the "@" symbol followed by the identifier/key you want to reference. You should use the dot separator for an inline key.
-
-```
-john {
-    name John
-    age 21
-    contacts {
-        email john@gmail.com
-        mobile 345678912
-    }
-}
-james {
-    name James
-    age 20
-    contacts {
-        email james@gmail.com
-        mobile 123456789
-    }
-}
-students [
-    @james
-    @john
-]
-
-john_contacts @john.contacts
-```
-
-These references establish connections between different parts of your data, allowing you to link and reuse information across entities and arrays. This promotes a modular and organized structure in representing data relationships.
 
 ## Comment 
 
@@ -126,45 +93,15 @@ Single-line comments provide brief annotations on a new line, while multi-line c
 ## Example
 
 ```
-james {
-    name James
-    age 20
-    contacts {
-        email james@gmail.com
-        mobile 123456789
-    }
-}
-
-john {
-    name John
-    age 21
-    contacts {
-        email john@gmail.com
-        mobile 345678912
-    }
-}
-
-harvard_students [
-    {
-        name Mary
-        age 20
-        contacts {
-            email mary@gmail.com
-            mobile 678912345
-        }
-    }
-]
-
 universities [
     {
         name Harvard University
         country USA
-        address '''
+        address `
 Massachusetts Hall
 Cambridge, MA 02138
-'''
+`
         students [
-            @harvard_students
             {
                 name Mark
                 age 20
@@ -173,20 +110,42 @@ Cambridge, MA 02138
                     mobile 123456789
                 }
             }
+            {
+                name Mary
+                age 20
+                contacts {
+                    email mary@gmail.com
+                    mobile 678912345
+                }
+            }
         ]
     }
     {
         name University Of Oxford
         country United Kingdom
-        address '''
+        address `
 Wellington Square
 Oxford
 OX1 2JD
 United Kingdom
-'''
+`
         students [
-            @john
-            @james      
+            {
+                name James
+                age 20
+                contacts {
+                    email james@gmail.com
+                    mobile 123456789
+                }
+            }
+            {
+                name John
+                age 21
+                contacts {
+                    email john@gmail.com
+                    mobile 345678912
+                }
+            }     
         ]
     }
 ]
