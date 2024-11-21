@@ -33,7 +33,8 @@ Ariana..
 ```
 In this example:
 - **Ariana** is a section containing a birthday key/value pair and a nested **contacts** section.
-- Indentation determines the scope of key/value pairs and sections.
+- Indentation determines the scope of key/value pairs and sections
+
 #### Key Notes
 - ".." signals the start of a Section
 - All keys and values within a Section are indented with one tab
@@ -57,6 +58,7 @@ students:
     History
 ```
 This design provides flexibility, allowing lists to contain both simple values and complex entities, all within a structured framework. The use of one-tab indentation for each list item, along with special handling for entities, ensures that data remains easy to read, organized, and adaptable to various needs.
+
 #### Key Notes
 - The entire document is implicitly a List at the top level
 - A colon ":" after the key indicates the start of the list
@@ -65,9 +67,7 @@ This design provides flexibility, allowing lists to contain both simple values a
 - Sections within a List are preceded by a double dot ".." and indented with an additional tab
 
 ## Values
-Values define the data associated with a key and come in two forms:
-- A **single-line value** is data representation placed within the current line
-- A **multi-line value** is extended data spans multiple lines, with additional lines indented by one tab
+Values define the data associated with a key and come in two forms. A **single-line value** is data representation placed within the current line. A **multi-line value** is extended data spans multiple lines, with additional lines indented by one tab.
 ```
 name Ariana
 age 12
@@ -75,6 +75,7 @@ description This is a multi-line value.
     You can add more than one line for data representation.
 ```
 This method provides a clear, intuitive way to express complex or multi-line data, without requiring additional syntax. It maintains the hierarchical structure of the document, promoting readability and simplicity.
+
 #### Key Notes
 - A single-line value is written directly on the same line as the key
 - A multi-line value starts on the same line as the key and is continued on subsequent lines, each indented with an additional tab
@@ -92,6 +93,7 @@ A **multi-line comment** starts with the "#" and subsequent lines are indented w
     You can describe something here.
     It spans multiple lines and provides detailed information.
 ```
+
 #### Key Notes
 - Comments must begin on a new line
 - Comments cannot be placed alongside keys or values
