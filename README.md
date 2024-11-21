@@ -31,9 +31,7 @@ Ariana..
         email ariana@gmail.com
         mobile 123456789
 ```
-In this example:
-- **Ariana** is a section containing a birthday key/value pair and a nested **contacts** section.
-- Indentation determines the scope of key/value pairs and sections
+In this example, **Ariana** is a section containing a birthday key/value pair and a nested **contacts** section. Indentation determines the scope of key/value pairs and sections.
 
 #### Key Notes
 - ".." signals the start of a Section
