@@ -23,34 +23,34 @@ Each document consists of one or more sections composed of keys, which act as un
     - Ensures documents are both human-readable and machine-parsable
 
 ## Sections
-Sections group related key/value pairs under a single entity. Each section is defined with the double dot "..", followed by an indented block containing its key/value pairs. Indentation is vital for establishing hierarchy and readability.
+Sections group related key/value pairs under a single entity. Each section is defined using a colon ":", followed by an indented block containing its key/value pairs. Indentation is vital for establishing hierarchy and readability.
 ```
-Ariana..
+Ariana:
     birthday 7.8.2011
-    contacts..
+    contacts:
         email ariana@gmail.com
         mobile 123456789
 ```
 In this example, **Ariana** is a section containing a birthday key/value pair and a nested **contacts** section. Indentation determines the scope of key/value pairs and sections.
 
 #### Key Notes
-- ".." signals the start of a Section
+- ":" signals the start of a Section
 - All keys and values within a Section are indented with one tab
 
 ## Lists
 A document in Nano Markup is treated as a **List by default**, meaning all top-level elements are considered entries within an implicit list structure.
 
-Lists are explicitly defined using a colon ":" after the key. If the key is omitted, the list becomes **anonymous**. Items in the list appear on subsequent lines, each indented by one tab. Lists can also contain Sections, indicated by the ".." symbol.
+Lists are explicitly defined with the double dot ".." after the key. If the key is omitted, the list becomes **anonymous**. Items in the list appear on subsequent lines, each indented by one tab. Lists can also contain Sections, indicated by the ":" symbol.
 ```
-students:
-    ..
+students..
+    :
         name James
         age 20
-    ..
+    :
         name John
         age 21
 
-:
+..
     Math
     English
     History
@@ -59,10 +59,10 @@ This design provides flexibility, allowing lists to contain both simple values a
 
 #### Key Notes
 - The entire document is implicitly a List at the top level
-- A colon ":" after the key indicates the start of the list
+- Double dot ".." after the key indicates the start of the list
 - The key can be omitted for anonymous lists (lists without a key)
 - Each list item is indented by one tab
-- Sections within a List are preceded by a double dot ".." and indented with an additional tab
+- Sections within a List are preceded by a colon ":" and indented with an additional tab
 
 ## Values
 Values define the data associated with a key and come in two forms. A **single-line value** is data representation placed within the current line. A **multi-line value** is extended data spans multiple lines, with additional lines indented by one tab.
@@ -113,40 +113,40 @@ A **multi-line comment** starts with the "#" and subsequent lines are indented w
 
 ## Example
 ```
-universities:
-    ..
+universities..
+    :
         name Harvard University
         country USA
         address Massachusetts Hall
             Cambridge, MA 02138
-        students:
-            ..
+        students..
+            :
                 name Mark
                 age 20
                 contacts
                     email mark@gmail.com
                     mobile 12345678
-            ..
+            :
                 name Mary
                 age 20
                 contacts 
                     email mary@gmail.com
                     mobile 678912345
-    ..
+    :
         name University Of Oxford
         country United Kingdom
         address Wellington Square
             Oxford
             OX1 2JD
             United Kingdom
-        students:
-            ..
+        students..
+            :
                 name James
                 age 20
                 contacts
                     email james@gmail.com
                     mobile 123456789
-            ..
+            :
                 name John
                 age 21
                 contacts 
