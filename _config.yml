@@ -1,5 +1,5 @@
 title: Nano Markup
-description: A minimal, indentation-based data format for strings, mappings, and sequences.
+description: A lightweight markup language and minimal, indentation-based structured data format. Designed to be a small, human-friendly serialization format for representing strings, mappings, and sequences.
 url: https://nohainc.github.io
 baseurl: ""
 lang: en

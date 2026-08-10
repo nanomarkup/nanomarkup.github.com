@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Nano Markup
-description: A minimal, indentation-based data format for strings, mappings, and sequences.
+description: A lightweight markup language and minimal, indentation-based data format. A small, human-readable structured data format for strings, mappings, and sequences.
 permalink: /
 ---
 
 <section class="hero">
   <p class="eyebrow">Nano Markup 1.0.0</p>
   <h1>Structured data,<br><span>without the visual noise.</span></h1>
-  <p class="lede">Nano Markup is a minimal, indentation-based format for representing strings, mappings, and sequences in a form designed to be easy for people to read and write.</p>
+  <p class="lede">Nano Markup is a small, human-readable, lightweight markup language and indentation-based data format. It represents strings, mappings, and sequences without visual noise, making structured data easy for people to read and write.</p>
   <div class="actions">
     <a class="button primary" href="{{ '/specification.html' | relative_url }}">Read the specification</a>
     <a class="button" href="{{ '/implementations.html' | relative_url }}">Use Nano Markup</a>
